@@ -7,6 +7,8 @@ using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
+using WebApiContrib.Formatting.Jsonp;
+using System.Web.Http.Cors;
 
 namespace EmployeeService
 {
@@ -39,9 +41,18 @@ namespace EmployeeService
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-            config.Formatters.Add(new CustomJsonFormatter());
+
+           // config.Filters.Add(new RequireHttpsAttribute());
+
+            //Enabling CORS 
+            //EnableCorsAttribute cors = new EnableCorsAttribute("*", "*", "*");
+            //config.EnableCors();
+            //calling an ASP.NET Web API service in a cross domain using JSONP.
+            //var jsonpFormatter = new JsonpMediaTypeFormatter(config.Formatters.JsonFormatter);
+            //config.Formatters.Insert(0, jsonpFormatter);
 
 
+            //config.Formatters.Add(new CustomJsonFormatter());
             //config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("text/html"));
             //config.Formatters.Remove(config.Formatters.JsonFormatter);
             //config.Formatters.Remove(config.Formatters.XmlFormatter);

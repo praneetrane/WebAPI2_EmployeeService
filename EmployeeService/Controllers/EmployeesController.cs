@@ -4,10 +4,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace EmployeeService.Controllers
 {
-    public class EmployeesController : ApiController
+    //[EnableCorsAttribute("*","*","*")]
+       public class EmployeesController : ApiController
     {
         [HttpGet]
         public HttpResponseMessage LoadEmployees(string Gender="All")
