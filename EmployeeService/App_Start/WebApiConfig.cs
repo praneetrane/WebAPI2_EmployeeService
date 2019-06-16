@@ -43,6 +43,7 @@ namespace EmployeeService
             );
 
             //config.Filters.Add(new RequireHttpsAttribute());
+           // config.Filters.Add(new BasicAuthenticationAttribute());
 
             //Enabling CORS 
             //EnableCorsAttribute cors = new EnableCorsAttribute("*", "*", "*");

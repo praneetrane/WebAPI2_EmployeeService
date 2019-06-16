@@ -1,8 +1,10 @@
-﻿using System;
+﻿using EmployeeDataAccess;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
@@ -12,12 +14,14 @@ namespace EmployeeService.Controllers
  
        public class EmployeesController : ApiController
     {
-        [HttpGet]
-        public HttpResponseMessage LoadEmployees(string Gender="All")
+        [BasicAuthentication]
+        public HttpResponseMessage Get(string Gender="All")
         {
+            string username = Thread.CurrentPrincipal.Identity.Name;
+
             using (EmployeeDBEntities entities = new EmployeeDBEntities())
             {
-                switch (Gender.ToLower())
+                switch (username.ToLower())
                 {
                     case "all":
                         return Request.CreateResponse(HttpStatusCode.OK, entities.Employees.ToList());
@@ -26,7 +30,8 @@ namespace EmployeeService.Controllers
                     case "female":
                         return Request.CreateResponse(HttpStatusCode.OK, entities.Employees.Where(e => e.Gender == "female").ToList());
                     default:
-                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Value for Gender must be Male,Female or All." +Gender+ " is Invalid.");
+                        return Request.CreateResponse(HttpStatusCode.BadRequest);
+                       // return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Value for Gender must be Male,Female or All." +Gender+ " is Invalid.");
                 }
                 
             }
@@ -40,7 +45,7 @@ namespace EmployeeService.Controllers
         //        return entities.Employees.ToList();
         //    }
         //}
-        [RequireHttps]
+        //[RequireHttps]
         public HttpResponseMessage Get(int id)
         {
             using (EmployeeDBEntities entities = new EmployeeDBEntities())
