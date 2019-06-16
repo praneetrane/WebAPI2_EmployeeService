@@ -23,7 +23,8 @@ namespace EmployeeService
 
                 UriBuilder uriBuilder = new UriBuilder(actionContext.Request.RequestUri);
                 uriBuilder.Scheme = Uri.UriSchemeHttps;
-                uriBuilder.Port = 44337;
+                uriBuilder.Port = 44332;
+                actionContext.Response.Headers.Location = uriBuilder.Uri;
 
                 actionContext.Response.Headers.Location = uriBuilder.Uri;
             }

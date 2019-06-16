@@ -9,6 +9,7 @@ using System.Web.Http.Cors;
 namespace EmployeeService.Controllers
 {
     //[EnableCorsAttribute("*","*","*")]
+ 
        public class EmployeesController : ApiController
     {
         [HttpGet]
@@ -39,6 +40,7 @@ namespace EmployeeService.Controllers
         //        return entities.Employees.ToList();
         //    }
         //}
+        [RequireHttps]
         public HttpResponseMessage Get(int id)
         {
             using (EmployeeDBEntities entities = new EmployeeDBEntities())

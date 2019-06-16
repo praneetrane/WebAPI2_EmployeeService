@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EmployeeService
+namespace EmployeeDataAccess
 {
     using System;
     using System.Data.Entity;
@@ -26,5 +26,6 @@ namespace EmployeeService
         }
     
         public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

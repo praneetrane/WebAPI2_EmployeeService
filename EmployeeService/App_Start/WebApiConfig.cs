@@ -42,7 +42,7 @@ namespace EmployeeService
                 defaults: new { id = RouteParameter.Optional }
             );
 
-           // config.Filters.Add(new RequireHttpsAttribute());
+            //config.Filters.Add(new RequireHttpsAttribute());
 
             //Enabling CORS 
             //EnableCorsAttribute cors = new EnableCorsAttribute("*", "*", "*");
